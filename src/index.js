@@ -4,12 +4,12 @@ const { getTheImage } = require("./file-storage");
 
 const PORT = process.env.PORT;
 const storageAccountName = process.env.STORAGE_ACCOUNT_NAME;
-const storageAccessKey = process.env.STORAGE_ACCOUNT_KEY;
+const storageAccessKey = process.env.STORAGE_ACCESS_KEY;
 
 const app = express();
-
 app.get("/image", async (req, res) => {
     const imagePath = req.query.path;
+    console.log(storageAccountName, storageAccessKey, imagePath);
     const [response, properties] = await getTheImage(storageAccountName, storageAccessKey, imagePath);
 
     res.writeHead(200, {
